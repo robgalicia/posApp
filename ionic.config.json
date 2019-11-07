@@ -1,5 +1,7 @@
 {
   "name": "posApp",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>detalleComanda</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+   
+<ion-list>
+  <ion-item>
+    <ion-label><h3>Id de la comanda</h3><p>{{comanda.idComanda}}</p></ion-label>
+  </ion-item>
+  <ion-item>
+      <ion-label><h3>Nombre del mesero</h3><p>{{comanda.nombreMesero}}</p></ion-label>
+  </ion-item>
+  <ion-item>
+      <ion-label><h3>Fecha de la comanda</h3><p>{{comanda.fecha|date:'medium'}}</p></ion-label>
+  </ion-item>
+  <ion-item>
+      <ion-label><h3>Total de la comanda</h3> <p>{{comanda.total}}</p></ion-label>
+  </ion-item>
+  <ion-item>
+      <ion-label><h3>Número del local</h3><p>{{comanda.numeroLocal}}</p></ion-label>
+  </ion-item>
+
+</ion-list>
+<ion-button color="primary" expand="full" (click)="regresar()">
+    Regresar
+    </ion-button>
+</ion-content>
