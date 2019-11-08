@@ -56,4 +56,11 @@ constructor(private servicelocal: LocalStorageService,
 
     console.log('total de la suma', this.sum);
   }
+  async doRefresh(event){
+    setTimeout(async () => {
+      this.comandas = await this.servicelocal.getComandaLocal();
+      await this.sumaTotal(this.comandas);
+      event.target.complete();
+    }, 2000);
+  }
 }

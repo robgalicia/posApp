@@ -12,19 +12,20 @@
   <ion-segment-button value="">
     <ion-label>Todas</ion-label>
   </ion-segment-button>
-  <ion-segment-button value="DC Comics">
+  <!-- <ion-segment-button value="DC Comics">
     <ion-label>Gary</ion-label>
   </ion-segment-button>
   <ion-segment-button value="Marvel Comics">
       <ion-label>Cristian</ion-label>
-    </ion-segment-button>
+    </ion-segment-button> -->
 </ion-segment>
 </ion-header>
 
 <ion-content>
-    <ion-button expand="full" (click)="abrirModal()">
-        Nueva Comanda
-         </ion-button>
+   
+         <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+          <ion-refresher-content></ion-refresher-content>
+         </ion-refresher>
   <ion-list #lista>
     <ion-item-sliding *ngFor="let c of comandas">
         <ion-item  class="animated fadeIn fast">
@@ -47,11 +48,19 @@
             </ion-item-option>
           </ion-item-options>
     </ion-item-sliding>
-    <ion-card>
-      <ion-card-content>
-        <h1>Total: $ {{this.sum}}</h1>
-      </ion-card-content>
-    </ion-card>
+   
   
   </ion-list>
 </ion-content>
+<ion-footer>
+  <ion-toolbar>
+      <ion-card>
+          <ion-card-content>
+            <h1>Total: $ {{this.sum}}</h1>
+          </ion-card-content>
+        </ion-card>
+        <ion-button expand="full" (click)="abrirModal()">
+            Nueva Comanda
+             </ion-button>
+  </ion-toolbar>
+</ion-footer>

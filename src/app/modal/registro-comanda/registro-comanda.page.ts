@@ -4,6 +4,7 @@ import { modelComanda } from 'src/app/Model/comandaModel';
 import { LocalStorageService } from '../../services/local-storage.service';
 import {Camera, CameraOptions} from '@ionic-native/camera/ngx';
 import { File } from '@ionic-native/file/ngx';
+import { delay } from 'q';
 
 @Component({
   selector: 'app-registro-comanda',
@@ -13,6 +14,7 @@ import { File } from '@ionic-native/file/ngx';
 export class RegistroComandaPage implements OnInit {
 comanda: modelComanda;
  comandasarrar: modelComanda[];
+ mensaje:string;
   constructor(private modalcn: ModalController,
               private service: LocalStorageService,
               private camera: Camera,
@@ -22,15 +24,23 @@ comanda: modelComanda;
     this.comanda = new modelComanda();
     this.comandasarrar = [];
   }
-  onSubmitTemplate(){
-    this.comanda.fecha = new Date();
-    this.comanda.numeroLocal = 23;
-    console.log(this.comanda);
-    this.comandasarrar = [];
-    this.comandasarrar.push(this.comanda);
-    console.log(this.comandasarrar);
-    this.service.setComandaLocal(this.comandasarrar);
+  async onSubmitTemplate(){
+    try{
 
+      this.comanda.fecha = new Date();
+      this.comanda.numeroLocal = 23;
+      console.log(this.comanda);
+      this.comandasarrar = [];
+      this.comandasarrar.push(this.comanda);
+      console.log(this.comandasarrar);
+      this.service.setComandaLocal(this.comandasarrar);
+    this.mensaje = 'Comanda creada con éxito';
+    await delay(2000);
+    this.modalcn.dismiss();
+    }catch(error){
+      console.log(error);
+      this.mensaje = 'Error al crear la comanda';
+    }
   }
   regresar(){
     this.modalcn.dismiss();
