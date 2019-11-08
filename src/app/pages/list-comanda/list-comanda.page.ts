@@ -13,12 +13,15 @@ import { DetalleComandaPage } from '../../modal/detalle-comanda/detalle-comanda.
 })
 export class ListComandaPage implements OnInit {
 comandas: modelComanda[];
+comandasbk: modelComanda[];
 public sum: number = 0;
+textoBuscar:string;
 constructor(private servicelocal: LocalStorageService,
               private mcontroller: ModalController) { }
 
   async ngOnInit() {
     this.comandas =  await this.servicelocal.getComandaLocal();
+    this.comandasbk = this.comandas;
     console.log(this.comandas);
     await this.sumaTotal(this.comandas);
   }
@@ -59,8 +62,17 @@ constructor(private servicelocal: LocalStorageService,
   async doRefresh(event){
     setTimeout(async () => {
       this.comandas = await this.servicelocal.getComandaLocal();
+      this.comandasbk = this.comandas;
       await this.sumaTotal(this.comandas);
       event.target.complete();
     }, 2000);
+  }
+   async buscar(event){
+  this.textoBuscar = event.detail.value;
+  console.log(this.textoBuscar);
+  this.comandas = this.comandasbk;
+  this.comandas = this.comandas.filter(x => x.nombreMesero.includes(this.textoBuscar));
+  await this.sumaTotal(this.comandas);
+  console.log(this.comandas);
   }
 }
