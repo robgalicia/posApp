@@ -69,7 +69,7 @@ constructor(private servicelocal: LocalStorageService,
   }
    async buscar(event){
   this.textoBuscar = event.detail.value;
-  console.log(this.textoBuscar);
+  console.log('texto a buscar', this.textoBuscar);
   this.comandas = this.comandasbk;
   this.comandas = this.comandas.filter(x => x.nombreMesero.includes(this.textoBuscar));
   await this.sumaTotal(this.comandas);
