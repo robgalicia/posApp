@@ -25,6 +25,13 @@ Regresar
       </ion-label>
       <ion-input type="number" [(ngModel)]="comanda.total" name="total"></ion-input>
     </ion-item>
+    <ion-item>
+      <ion-label>
+        Foto de la comanda
+      </ion-label>
+      <ion-button (click)="takePhoto()">Tomar foto</ion-button>
+      <ion-img [src]="comanda.imagen"></ion-img>
+    </ion-item>
   </ion-list>
   <ion-button expand="full" type="submit">
     Registrar

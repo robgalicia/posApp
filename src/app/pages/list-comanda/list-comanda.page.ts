@@ -47,10 +47,13 @@ constructor(private servicelocal: LocalStorageService,
     // for(let com of totalcomandas){
     //   this.sum += com.total;
     // }
-    totalcomandas.forEach(data => {
-      console.log(data.total);
-      this.sum += data.total;
-    });
+    if (totalcomandas != null) {
+      totalcomandas.forEach(data => {
+        console.log(data.total);
+        this.sum += data.total;
+      });
+    }
+
     console.log('total de la suma', this.sum);
   }
 }

@@ -5,5 +5,6 @@ export class modelComanda {
     numeroLocal: number;
     fecha: Date;
     total: number;
+    imagen: string;
     }
     
